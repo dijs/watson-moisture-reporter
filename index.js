@@ -18,9 +18,12 @@ function takeReading() {
   if (reading) {
     pubnub.publish({
       "channel": "moistures",
-      "message": reading
+      "message": {
+        eon: {
+          [reading.location]: reading.moisture
+        }
+      }
     });
-    // queue.add(reading);
   }
 }
 
